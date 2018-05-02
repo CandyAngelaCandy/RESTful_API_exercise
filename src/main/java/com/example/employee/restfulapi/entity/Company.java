@@ -6,7 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+
 public class Company {
+
+    @OneToMany(mappedBy = "Company",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+
+    private Set<Employee> employees = new HashSet<>();
+
     @Id
     @GeneratedValue
     private Long id;

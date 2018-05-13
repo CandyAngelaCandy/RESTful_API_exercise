@@ -3,7 +3,6 @@ package com.example.employee.restfulapi.controller;
 import com.example.employee.restfulapi.entity.Employee;
 import com.example.employee.restfulapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -29,7 +28,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/page/{page}/pageSize/{pageSize}")
-    public List<Employee> getPageEmployeeList(@PathVariable("page") int page, @PathVariable("pageSize") int pageSize) {
+    public List<Employee> getPageEmployeeList(@PathVariable("page") int page,
+                                              @PathVariable("pageSize") int pageSize) {
         Pageable pageable = new PageRequest(page - 1, pageSize);
         return employeeRepository.findAll(pageable).getContent();
     }

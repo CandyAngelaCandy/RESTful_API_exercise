@@ -1,10 +1,7 @@
 package com.example.employee.restfulapi.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -50,5 +47,10 @@ public class Company {
 
     @OneToMany(cascade = {CascadeType.REMOVE,CascadeType.ALL},fetch = FetchType.LAZY)
     @JoinColumn(name = "companyId")
-    private List<Employee> employees = new ArrayList<>();
+    private Set<Employee> employees = new HashSet<>();
+    public Set<Employee> getAllEmployees() {
+        return employees;
+    }
+
+
 }
